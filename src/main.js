@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-    canvas = createCanvas(800, 600);
+    canvas = createCanvas(1800, 600);
     canvas.drawingContext.imageSmoothingEnabled = false;
     
     textos = [];
@@ -19,7 +19,12 @@ function populate(g, a) {
     d.forEach(function(e) {
         s = s + e + " " + g.getString(e) + " ";
     })
-    a.push(s);
+    if (g.getName() != "#text") {
+        a.push(s);
+    }
+    else {
+        console.log(typeof(g));
+    }
     if (g.hasChildren()) {
         var i = a.push([]);
         var c = g.getChildren();
