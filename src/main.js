@@ -7,14 +7,17 @@ function setup() {
     canvas = createCanvas(800, 600);
     canvas.drawingContext.imageSmoothingEnabled = false;
     
-    textos = [];
-    populate(xml);
+    textos = [[]];
+    populate(xml, textos[0]);
 }
 
-function populate(g) {
-    textos.forEach(function(tex) {
-        
-    });
+function populate(g, a) {
+    if (g.hasChildren()) {
+        g.forEach(function(h) {
+            populate(h, a)
+        })
+    }
+    
 }
 
 function draw() {
