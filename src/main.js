@@ -12,7 +12,7 @@ function setup() {
 
     world = new p2.World({gravity: [0, 90]});
     body = new p2.Body({mass: 0, position: [0, 0]});
-    startpos = body.position;
+    startpos = [body.position[0], body.position[1]];
     //carga de figuras del svg
     //**FLOOR**
     solidos = hola.layer("Floor");
@@ -22,14 +22,20 @@ function setup() {
             //luego estos cases iran en otro .js
             //creo que es buena idea abstraer estas cosas feas
             case "rect":
-                shape = new p2.Box({width: obj.width, height: obj.height});
-                body.addShape(shape, [obj.x + obj.width / 2, obj.y + obj.height / 2]);
-                break;
             case "path":
-                body.fromPolygon(obj.vertices);
+                var tvertices = [];
+                for (var i = 0; i != obj.vertices.length; i++) {
+                    console.log(startpos);
+                    tvertices[i] = [
+                        obj.vertices[i][0] - body.position[0] + startpos[0],
+                        obj.vertices[i][1] - body.position[1] + startpos[1],
+                    ];
+                }
+                body.fromPolygon(tvertices);
                 break;
         }
     })
+    console.log(body.shapes);
     world.addBody(body);
     //**ENEMIES**
     enemyarray = [];

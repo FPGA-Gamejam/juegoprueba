@@ -32,15 +32,32 @@ class woomy {
 		}
 		return objects;
 	}
+	transform(node, vertices) {
+		if (!node.hasAttribute("transform")) {return vertices};
+		var cmds = node.getString("transform");
+		var n = cmds.search("matrix");
+		if (n == -1) {return vertices};
+		var c = cmds.substring(7, cmds.length - 1).split(",");
+		var newvertices = [];
+		for (var i = 0; i != vertices.length; i++) {
+			var v = vertices[i];
+			newvertices[i] = [];
+			newvertices[i][0] = c[0] * v[0] + c[2] * v[1] + c[4];
+			newvertices[i][1] = c[1] * v[0] + c[3] * v[1] + c[5];
+		}
+		return newvertices;
+	}
 	rect(node) {
+		var x = node.getNum("x");
+		var y = node.getNum("y");
+		var width = node.getNum("width");
+		var height = node.getNum("height");
 		var obj = {
 			type: "rect",
-			x: node.getNum("x"),
-			y: node.getNum("y"),
-			width: node.getNum("width"),
-			height: node.getNum("height"),
+			vertices: [[x, y], [x + width, y], [x + width, y + height], [x, y + height]],
 			label: node.getString("inkscape:label"),
 		};
+		obj.vertices = this.transform(node, obj.vertices);
 		return obj;
 	}
 	path(node) {
