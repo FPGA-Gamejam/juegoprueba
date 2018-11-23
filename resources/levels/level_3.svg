@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="793.70081"
-   height="1122.5197"
-   viewBox="0 0 210 297"
+   width="740"
+   height="119.99996"
+   viewBox="0 0 195.79166 31.749991"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.29411765"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="311.58108"
-     inkscape:cy="127.01198"
+     inkscape:cx="269.97425"
+     inkscape:cy="127.01197"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -44,10 +44,16 @@
      inkscape:snap-text-baseline="true"
      units="px"
      inkscape:pagecheckerboard="true"
-     borderlayer="false">
+     borderlayer="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
     <inkscape:grid
        type="xygrid"
-       id="grid3713" />
+       id="grid3713"
+       originx="-5.2916663"
+       originy="-5.2916696" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -64,7 +70,8 @@
   <g
      inkscape:label="Floor"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-5.2916665,-259.95833)">
     <rect
        style="fill:#d4aa00;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4527"
@@ -150,7 +157,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Enemies"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(-5.2916665,-259.95833)">
     <circle
        style="fill:#d40021;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path5119"
