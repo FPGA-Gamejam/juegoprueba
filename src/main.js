@@ -1,20 +1,30 @@
 var level;
-var y = 0;
+var y = 10;
 function preload() {
     xml = loadXML("resources/levels/level_3.svg");
 }
 
 function setup() {
-    canvas = createCanvas(800, 600);
+    canvas = createCanvas(1800, 600);
     canvas.drawingContext.imageSmoothingEnabled = false;
     
     textos = [];
     populate(xml, textos);
-    console.log("aver");
+    console.log("aver2");
 }
 
 function populate(g, a) {
-    a.push(g.getName());
+    s = g.getName() + ": ";
+    d = g.listAttributes();
+    d.forEach(function(e) {
+        s = s + e + " " + g.getString(e) + " ";
+    })
+    if (g.getName() != "#text") {
+        a.push(s);
+    }
+    else {
+        console.log(typeof(g));
+    }
     if (g.hasChildren()) {
         var i = a.push([]);
         var c = g.getChildren();
@@ -37,5 +47,7 @@ function recursivedraw(a, l) {
 }
 
 function draw() {
+    y = 10;
+    background(255);
     recursivedraw(textos, 0);
 }
