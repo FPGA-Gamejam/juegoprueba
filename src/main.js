@@ -7,10 +7,10 @@ function preload() {
 }
 
 function setup() {
-    canvas = createCanvas(1800, 600);
+    canvas = createCanvas(1024, 768);
     canvas.drawingContext.imageSmoothingEnabled = false;
-    console.log("alo");
-    world = new p2.World({gravity: [0, 10]});
+
+    world = new p2.World({gravity: [0, 90]});
     body = new p2.Body({mass: 0, position: [0, 0]});
     startpos = body.position;
     //carga de figuras del svg
@@ -35,9 +35,9 @@ function setup() {
     enemyarray = [];
     enemies = hola.layer("Enemies");
     enemies.forEach(function(obj) {
-        if (obj.type == "ellipse") {
+        if (obj.type == "circle") {
             var enemybody = new p2.Body({mass: 5, position: [obj.x, obj.y]});
-            var enemyshape = new p2.Circle({radius: obj.rx});
+            var enemyshape = new p2.Circle({radius: obj.r});
             enemybody.addShape(enemyshape);
             world.addBody(enemybody);
             enemyarray.push(enemybody);
@@ -55,5 +55,9 @@ function draw() {
     enemyarray.forEach(function(enemy) {
         pip(enemy);
     });
+
+    text("(0, 0)", 0, 10);
+    text("(400, 300)", 400, 310);
+    text("(800, 600)", 800, 610);
 }
 

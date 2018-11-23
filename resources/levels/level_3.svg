@@ -25,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.29411765"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="215.99778"
-     inkscape:cy="87.01197"
+     inkscape:zoom="1"
+     inkscape:cx="89.390722"
+     inkscape:cy="-16.5621"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
@@ -231,5 +231,18 @@
        inkscape:label="#enemy"
        rx="4.8310809"
        ry="4.791667" />
+    <circle
+       style="fill:#ff0066;fill-opacity:0;fill-rule:evenodd;stroke:#d40055"
+       id="path38"
+       cx="279.5"
+       cy="224.74995"
+       r="10"
+       inkscape:label="circulo" />
+    <circle
+       style="fill:#ff0066;fill-opacity:0;fill-rule:evenodd;stroke:#d40055"
+       id="path36"
+       cx="410"
+       cy="305.24997"
+       r="10" />
   </g>
 </svg>

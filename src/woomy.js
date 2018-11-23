@@ -24,8 +24,9 @@ class woomy {
 				case "path":
 					objects.push(this.path(v));
 					break;
+				case "circle":
 				case "ellipse":
-					objects.push(this.ellipse(v));
+					objects.push(this.circle(v));
 					break;
 			}
 		}
@@ -91,15 +92,15 @@ class woomy {
 		}
 		return obj;
 	}
-	ellipse(node) {
+	circle(node) {
 		var obj = {
-			type: "ellipse",
+			type: "circle",
 			x: node.getNum("cx"),
 			y: node.getNum("cy"),
-			rx: node.getNum("rx"),
-			ry: node.getNum("ry"),
 			label: node.getString("inkscape:label"),
 		}
+		if (node.getName() == "circle") {obj.r = node.getNum("r")}
+		else if (node.getName() == "ellipse") {obj.r = node.getNum("rx")}
 		return obj;
 	}
 }
