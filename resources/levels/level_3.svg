@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.29411765"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="215.13988"
-     inkscape:cy="91.364334"
+     inkscape:zoom="2"
+     inkscape:cx="311.58108"
+     inkscape:cy="127.01198"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -72,7 +72,7 @@
        height="5.2916665"
        x="5.2916665"
        y="286.41666"
-       inkscape:label="#floor_ground" />
+       inkscape:label="floor_ground" />
     <rect
        style="fill:#d4aa00;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect5101"
