@@ -14,7 +14,12 @@ function setup() {
 }
 
 function populate(g, a) {
-    a.push(g.getName() + ":" + g.getContent());
+    s = g.getName() + ": ";
+    d = g.listAttributes();
+    d.forEach(function(e) {
+        s = s + e + " " + g.getString(e) + " ";
+    })
+    a.push(s);
     if (g.hasChildren()) {
         var i = a.push([]);
         var c = g.getChildren();
