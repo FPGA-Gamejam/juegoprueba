@@ -152,6 +152,13 @@
        x="89.958336"
        y="275.83331"
        inkscape:label="#floor" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 111.125,267.89582 15.875,-2.64583 2.64583,7.9375 L 127,278.47916 h -15.875 l -7.9375,-5.29167 v -2.64583 z"
+       id="path5137"
+       inkscape:connector-curvature="0"
+       inkscape:label="floor_poly"
+       sodipodi:nodetypes="cccccccc" />
   </g>
   <g
      inkscape:groupmode="layer"
