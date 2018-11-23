@@ -1,55 +1,59 @@
-var level;
-var y = 10;
+var hola;
+var solidos = [];
+var world;
+var body;
 function preload() {
-    //xml = loadXML("resources/levels/level_3.svg");
     hola = new woomy("resources/levels/level_3.svg");
 }
 
 function setup() {
-
     canvas = createCanvas(1800, 600);
     canvas.drawingContext.imageSmoothingEnabled = false;
-    
-    textos = [];
-    console.log("aver2");
-    hola.layer("Floor");
-}
-
-function populate(g, a) {
-    s = g.getName() + ": ";
-    d = g.listAttributes();
-    d.forEach(function(e) {
-        s = s + e + " - " + g.getString(e) + " ... ";
+    console.log("alo");
+    world = new p2.World({gravity: [0, 10]});
+    body = new p2.Body({mass: 0, position: [0, 0]});
+    startpos = body.position;
+    //carga de figuras del svg
+    //**FLOOR**
+    solidos = hola.layer("Floor");
+    solidos.forEach(function(obj) {
+        var shape;
+        switch (obj.type) {
+            //luego estos cases iran en otro .js
+            //creo que es buena idea abstraer estas cosas feas
+            case "rect":
+                shape = new p2.Box({width: obj.width, height: obj.height});
+                body.addShape(shape, [obj.x + obj.width / 2, obj.y + obj.height / 2]);
+                break;
+            case "path":
+                body.fromPolygon(obj.vertices);
+                break;
+        }
     })
-    if (g.getName() != "#text") {
-        a.push(s);
-    }
-    else {
-        console.log(typeof(g));
-    }
-    if (g.hasChildren()) {
-        var i = a.push([]);
-        var c = g.getChildren();
-        c.forEach(function(h) {
-            populate(h, a[i - 1])
-        })
-    }
-}
+    world.addBody(body);
+    //**ENEMIES**
+    enemyarray = [];
+    enemies = hola.layer("Enemies");
+    enemies.forEach(function(obj) {
+        if (obj.type == "ellipse") {
+            var enemybody = new p2.Body({mass: 5, position: [obj.x, obj.y]});
+            var enemyshape = new p2.Circle({radius: obj.rx});
+            enemybody.addShape(enemyshape);
+            world.addBody(enemybody);
+            enemyarray.push(enemybody);
+        }
+    })
 
-function recursivedraw(a, l) {
-    if (typeof(a) == "string") {
-        text(a, l * 10, y);
-        y += 10;
-    }
-    else {
-        a.forEach(function(b) {
-            recursivedraw(b, l + 1);
-        })
-    }
 }
 
 function draw() {
-    y = 10;
     background(255);
-    recursivedraw(textos, 0);
+    world.step(1 / 60);
+
+    //dibujar
+    pip(body);
+    enemyarray.forEach(function(enemy) {
+        pip(enemy);
+    });
 }
+

@@ -24,12 +24,16 @@ class woomy {
 				case "path":
 					objects.push(this.path(v));
 					break;
+				case "ellipse":
+					objects.push(this.ellipse(v));
+					break;
 			}
 		}
 		return objects;
 	}
 	rect(node) {
 		var obj = {
+			type: "rect",
 			x: node.getNum("x"),
 			y: node.getNum("y"),
 			width: node.getNum("width"),
@@ -81,10 +85,21 @@ class woomy {
 			vertices.push([cx, cy]);
 		}
 		var obj = {
+			type: "path",
 			vertices: vertices,
 			label: node.getString("inkscape:label"),
 		}
-		console.log(obj);
+		return obj;
+	}
+	ellipse(node) {
+		var obj = {
+			type: "ellipse",
+			x: node.getNum("cx"),
+			y: node.getNum("cy"),
+			rx: node.getNum("rx"),
+			ry: node.getNum("ry"),
+			label: node.getString("inkscape:label"),
+		}
 		return obj;
 	}
 }
