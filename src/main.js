@@ -1,5 +1,5 @@
 var level;
-var y = 0;
+var y = 10;
 function preload() {
     xml = loadXML("resources/levels/level_3.svg");
 }
@@ -10,11 +10,11 @@ function setup() {
     
     textos = [];
     populate(xml, textos);
-    console.log("aver");
+    console.log("aver2");
 }
 
 function populate(g, a) {
-    a.push(g.getName());
+    a.push(g.getName() + ":" + g.getContent());
     if (g.hasChildren()) {
         var i = a.push([]);
         var c = g.getChildren();
@@ -37,5 +37,7 @@ function recursivedraw(a, l) {
 }
 
 function draw() {
+    y = 10;
+    background(255);
     recursivedraw(textos, 0);
 }
