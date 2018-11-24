@@ -1,6 +1,6 @@
-//pip dibuja un cuerpo de p2.js
+//drawBody dibuja un cuerpo de p2.js
 //soporta figuras con vertices p2.js y circulos
-function pip(body) {
+function drawBody(body) {
 	if (!body.world) {return};
 	for (var k = 0; k != body.shapes.length; k++) {
 		var worldVertices = [];

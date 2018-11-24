@@ -3,10 +3,12 @@ var solidos = [];
 var world;
 var body;
 function preload() {
-    hola = new woomy("resources/levels/level_3.svg");
+    hola = new svgParser("resources/levels/level_3.svg");
 }
 
 function setup() {
+    
+
     canvas = createCanvas(1024, 768);
     canvas.drawingContext.imageSmoothingEnabled = false;
 
@@ -19,23 +21,12 @@ function setup() {
     solidos.forEach(function(obj) {
         var shape;
         switch (obj.type) {
-            //luego estos cases iran en otro .js
-            //creo que es buena idea abstraer estas cosas feas
             case "rect":
             case "path":
-                var tvertices = [];
-                for (var i = 0; i != obj.vertices.length; i++) {
-                    console.log(startpos);
-                    tvertices[i] = [
-                        obj.vertices[i][0] - body.position[0] + startpos[0],
-                        obj.vertices[i][1] - body.position[1] + startpos[1],
-                    ];
-                }
-                body.fromPolygon(tvertices);
+                body.fromPolygon(obj.vertices);
                 break;
         }
     })
-    console.log(body.shapes);
     world.addBody(body);
     //**ENEMIES**
     enemyarray = [];
@@ -57,9 +48,9 @@ function draw() {
     world.step(1 / 60);
 
     //dibujar
-    pip(body);
+    drawBody(body);
     enemyarray.forEach(function(enemy) {
-        pip(enemy);
+        drawBody(enemy);
     });
 
     text("(0, 0)", 0, 10);

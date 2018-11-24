@@ -1,5 +1,6 @@
-//woomy toma un xml y retorna objetos
-class woomy {
+//svgParser toma un xml y retorna objetos
+//tambien hace otras cosas
+class svgParser {
 	constructor(path) {
 		this.root = loadXML(path);
 	}
@@ -32,20 +33,58 @@ class woomy {
 		}
 		return objects;
 	}
-	transform(node, vertices) {
-		if (!node.hasAttribute("transform")) {return vertices};
-		var cmds = node.getString("transform");
-		var n = cmds.search("matrix");
-		if (n == -1) {return vertices};
-		var c = cmds.substring(7, cmds.length - 1).split(",");
-		var newvertices = [];
-		for (var i = 0; i != vertices.length; i++) {
-			var v = vertices[i];
-			newvertices[i] = [];
-			newvertices[i][0] = c[0] * v[0] + c[2] * v[1] + c[4];
-			newvertices[i][1] = c[1] * v[0] + c[3] * v[1] + c[5];
+	//leer y aplciar operaciones de transformacion
+	transform(node, obj) {
+		if (!node.hasAttribute("transform")) {return};
+		var cmds = ["matrix", "rotate", "translate"];
+		var str = node.getString("transform");
+	    var c = 0;
+	    var ops = [];
+	    while (c < str.length) {
+	        for (var i = 0; i != cmds.length; i++) {
+	            var n = str.substring(c).search(cmds[i]);
+	            if (n != -1) {
+	                n = n + c;
+	                ops.push({
+	                	type: cmds[i],
+	                	input: str.substring(n + cmds[i].length + 1, str.substring(n + cmds[i].length).search(/[)]/g) + n + cmds[i].length),
+	                	node: node,
+	                });
+	                c = n;
+	                break;
+	            }
+	        }
+	        c += 1;
+	    }
+	    for (var i = 0; i != ops.length; i++) {
+	    	var op = ops[i];
+	    	switch (ops[i].type) {
+	    		case "matrix":
+	    			this.matrix(node, obj, ops[i].input);
+	    			break;
+	    		case "rotate":
+	    			this.rotate(node, obj, ops[i].input);
+	    			break;
+	    		case "translate":
+	    			this.translate(node, obj, ops[i].input);
+	    			break;
+	    	}
+	    }
+	}
+	matrix(node, obj, input) {
+		var c = input.split(",");
+		if (!obj.vertices) {return};
+		for (var i = 0; i != obj.vertices.length; i++) {
+			var v = obj.vertices[i];
+			obj.vertices[i][0] = c[0] * v[0] + c[2] * v[1] + c[4];
+			obj.vertices[i][1] = c[1] * v[0] + c[3] * v[1] + c[5];
 		}
-		return newvertices;
+	}
+	rotate(node, obj, input) {
+		//dummy
+	}
+	translate(node, obj, input) {
+		//dummy
 	}
 	rect(node) {
 		var x = node.getNum("x");
@@ -57,7 +96,7 @@ class woomy {
 			vertices: [[x, y], [x + width, y], [x + width, y + height], [x, y + height]],
 			label: node.getString("inkscape:label"),
 		};
-		obj.vertices = this.transform(node, obj.vertices);
+		this.transform(node, obj);
 		return obj;
 	}
 	path(node) {
@@ -107,6 +146,7 @@ class woomy {
 			vertices: vertices,
 			label: node.getString("inkscape:label"),
 		}
+		this.transform(node, obj);
 		return obj;
 	}
 	circle(node) {
@@ -118,6 +158,7 @@ class woomy {
 		}
 		if (node.getName() == "circle") {obj.r = node.getNum("r")}
 		else if (node.getName() == "ellipse") {obj.r = node.getNum("rx")}
+		this.transform(node, obj);
 		return obj;
 	}
 }

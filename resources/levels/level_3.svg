@@ -29,7 +29,7 @@
      inkscape:cx="357.59392"
      inkscape:cy="-16.5621"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
@@ -161,6 +161,14 @@
        inkscape:connector-curvature="0"
        inkscape:label="floor_poly"
        sodipodi:nodetypes="ccccccccc" />
+    <rect
+       style="fill:#ff0066;fill-opacity:0;fill-rule:evenodd;stroke:#d40055"
+       id="rect61"
+       width="80"
+       height="50"
+       x="558.36389"
+       y="124.50823"
+       transform="rotate(18.500514)" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -232,18 +240,20 @@
        inkscape:label="#enemy"
        rx="4.8310809"
        ry="4.791667" />
-    <circle
-       style="fill:#ff0066;fill-opacity:0;fill-rule:evenodd;stroke:#d40055"
+    <ellipse
+       style="fill:#ff0066;fill-opacity:0;fill-rule:evenodd;stroke:#d40055;stroke-width:1.22996962"
        id="path38"
-       cx="279.5"
-       cy="224.74995"
-       r="10"
-       inkscape:label="circulo" />
+       cx="333.76434"
+       cy="-234.81038"
+       inkscape:label="circulo"
+       transform="matrix(0.19734528,0.98033404,-0.90981148,0.41502177,0,0)"
+       rx="14.537835"
+       ry="10.406124" />
     <circle
        style="fill:#ff0066;fill-opacity:0;fill-rule:evenodd;stroke:#d40055"
        id="path36"
-       cx="410"
-       cy="305.24997"
+       cx="410.5"
+       cy="255.74995"
        r="10" />
   </g>
 </svg>
